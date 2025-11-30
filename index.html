@@ -6,9 +6,7 @@
     <title>UFHB - Projet Erasmus+ ELEVATE WISE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link rel="icon" href="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/logo-ufhb.jpg" type="image/png">
     
     <script>
@@ -16,28 +14,22 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Merriweather', 'serif'],
+                        sans: ['Outfit', 'sans-serif'],
                     },
                     colors: {
                         ufhb: {
-                            dark: '#062F22',  /* Vert très profond/Noble */
-                            main: '#0A3D2E',  /* Vert UFHB Standard */
-                            gold: '#D4AF37',  /* Or Institutionnel */
-                            gray: '#F8F9FA',  /* Gris très léger */
+                            dark: '#0A3D2E',
+                            light: '#4CAF50',
+                            accent: '#E8F5E9',
                         }
                     },
                     animation: {
-                        'fade-in': 'fadeIn 1.5s ease-out forwards',
-                        'slide-up': 'slideUp 1s ease-out forwards',
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                        'bounce-slow': 'bounce 3s infinite',
                     },
                     keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
                         }
                     }
@@ -46,237 +38,244 @@
         }
     </script>
     <style>
-        /* Glassmorphism Ultra-Premium */
-        .glass-header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-
-        /* Effet Parallax sur la bannière */
-        .parallax-bg {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        /* Transition soyeuse pour le slider */
         .carousel-item {
             position: absolute;
             inset: 0;
             opacity: 0;
-            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 8s ease;
-            transform: scale(1.05);
+            transition: opacity 1.5s ease-in-out, transform 10s ease;
+            transform: scale(1);
         }
         .carousel-item.active {
             opacity: 1;
-            transform: scale(1);
+            transform: scale(1.05);
             z-index: 10;
         }
-
-        /* Reveal on Scroll plus subtil */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Ligne décorative dorée */
-        .gold-line {
-            display: inline-block;
-            width: 60px;
-            height: 3px;
-            background-color: #D4AF37;
-            margin-bottom: 1rem;
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 antialiased flex flex-col min-h-screen bg-white">
+<body class="font-sans text-gray-700 antialiased flex flex-col min-h-screen bg-gray-50 selection:bg-ufhb-light selection:text-white">
 
-    <header class="glass-header fixed top-0 w-full z-50 transition-all duration-300">
-        <div class="bg-ufhb-dark text-white text-xs py-2 hidden md:block">
-            <div class="container mx-auto px-6 flex justify-between items-center opacity-80">
-                <span><i class="fas fa-university mr-2"></i> Université Félix Houphouët-Boigny, Abidjan</span>
-                <div class="flex space-x-4">
-                    <a href="#" class="hover:text-ufhb-gold transition">Espace Presse</a>
-                    <a href="#" class="hover:text-ufhb-gold transition">Intranet</a>
-                </div>
-            </div>
-        </div>
-
+    <header class="glass-nav fixed top-0 w-full z-50 transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/logo-ufhb.jpg" alt="Logo UFHB" class="h-16 w-auto">
-                <div class="hidden lg:block border-l border-gray-300 pl-4">
-                    <h1 class="font-serif text-lg font-bold text-ufhb-dark leading-tight">Université Félix<br>Houphouët-Boigny</h1>
+            <div class="flex items-center space-x-3 group cursor-pointer">
+                <div class="relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-ufhb-light to-blue-500 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                    <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/logo-ufhb.jpg" alt="Logo UFHB" class="relative h-14 w-auto object-contain bg-white rounded-full p-1">
+                </div>
+                <div class="hidden md:block leading-tight">
+                    <h1 class="text-lg font-extrabold text-ufhb-dark tracking-tight">Université Félix<br>Houphouët-Boigny</h1>
                 </div>
             </div>
 
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wide text-gray-700">
-                <a href="#" class="hover:text-ufhb-gold transition duration-300">ACCUEIL</a>
-                <a href="#projet" class="hover:text-ufhb-gold transition duration-300">LE PROJET</a>
-                <a href="#partenaires" class="hover:text-ufhb-gold transition duration-300">CONSORTIUM</a>
-                <a href="#contact" class="px-6 py-3 bg-ufhb-dark text-white rounded-sm hover:bg-ufhb-gold transition duration-300 shadow-lg">
-                    NOUS CONTACTER
+            <nav class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-wide text-gray-600 items-center">
+                <a href="#" class="nav-link hover:text-ufhb-dark transition">Accueil</a>
+                <a href="#projet" class="nav-link hover:text-ufhb-dark transition">Le Projet</a>
+                <a href="#partenaires" class="nav-link hover:text-ufhb-dark transition">Partenaires</a>
+                <a href="#contact" class="px-6 py-2.5 bg-ufhb-dark text-white rounded-full hover:bg-ufhb-light hover:shadow-lg hover:-translate-y-0.5 transition duration-300 transform">
+                    Contact
                 </a>
             </nav>
 
-            <button class="md:hidden text-ufhb-dark text-2xl">
+            <button class="md:hidden text-ufhb-dark text-2xl hover:text-ufhb-light transition">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
 
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <section class="relative h-screen flex items-center justify-center overflow-hidden pt-20">
         <div class="absolute inset-0 z-0">
-            <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/banniere-ufhb.jpg" class="w-full h-full object-cover" alt="Campus UFHB">
-            <div class="absolute inset-0 bg-ufhb-dark/80 mix-blend-multiply"></div>
-            <div class="absolute inset-0 bg-black/40"></div>
+            <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/banniere-ufhb.jpg" class="w-full h-full object-cover scale-105" alt="Bannière">
+            <div class="absolute inset-0 bg-gradient-to-b from-ufhb-dark/90 via-ufhb-dark/60 to-ufhb-dark/90"></div>
         </div>
-
-        <div class="relative z-10 container mx-auto px-6 text-center text-white mt-16">
-            <div class="animate-slide-up">
-                <span class="inline-block py-1 px-3 border border-ufhb-gold text-ufhb-gold text-xs font-bold uppercase tracking-[0.2em] mb-6">
-                    Programme Erasmus+
-                </span>
-                
-                <h1 class="font-serif text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                    ELEVATE WISE
-                </h1>
-                
-                <p class="text-xl md:text-2xl font-light text-gray-200 max-w-4xl mx-auto mb-10 leading-relaxed font-sans">
-                    L'excellence au féminin. Un engagement stratégique pour l'avenir des <span class="text-white font-semibold border-b-2 border-ufhb-gold pb-1">jeunes filles ivoiriennes</span> dans les sciences et technologies.
-                </p>
-
-                <div class="flex flex-col sm:flex-row justify-center gap-6">
-                    <a href="#projet" class="px-8 py-4 bg-ufhb-gold text-ufhb-dark font-bold rounded-sm hover:bg-white transition duration-300 shadow-xl">
-                        Découvrir la mission
-                    </a>
-                    <a href="https://youtu.be/PaX879-Bexo?si=Lgz-UOX_eDx9jpMC" target="_blank" class="px-8 py-4 border border-white text-white font-medium rounded-sm hover:bg-white hover:text-ufhb-dark transition duration-300">
-                        <i class="fas fa-play-circle mr-2"></i> Voir le film
-                    </a>
-                </div>
+        
+        <div class="relative z-10 text-center text-white px-4 max-w-5xl animate-fade-in-up">
+            <div class="mb-4 inline-block px-4 py-1 rounded-full border border-ufhb-light/50 bg-ufhb-light/10 backdrop-blur-sm text-ufhb-light text-sm font-bold uppercase tracking-widest">
+                Coopération Internationale
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight drop-shadow-2xl">
+                ERASMUS+ <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">ELEVATE WISE</span>
+            </h1>
+            
+            <p class="text-lg md:text-2xl mb-10 font-light text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                Un programme d'excellence dédié à l'autonomisation des <strong class="text-ufhb-light font-bold">jeunes filles ivoiriennes</strong> dans les Sciences et Technologies (STEM).
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                <a href="#projet" class="group bg-ufhb-light text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-ufhb-dark transition duration-300 shadow-[0_0_20px_rgba(76,175,80,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]">
+                    Découvrir le programme
+                    <i class="fas fa-arrow-down ml-2 group-hover:translate-y-1 transition-transform"></i>
+                </a>
+                <a href="https://youtu.be/PaX879-Bexo?si=Lgz-UOX_eDx9jpMC" target="_blank" class="flex items-center gap-3 text-white hover:text-ufhb-light transition duration-300 group">
+                    <span class="w-12 h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30 group-hover:scale-110 transition duration-300">
+                        <i class="fas fa-play ml-1"></i>
+                    </span>
+                    <span class="font-bold underline decoration-ufhb-light underline-offset-4">Voir la vidéo</span>
+                </a>
             </div>
         </div>
 
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/60">
-            <i class="fas fa-chevron-down text-2xl"></i>
-        </div>
-    </section>
-
-    <section class="bg-ufhb-gray py-12 border-b border-gray-200">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-gray-200">
-                <div class="p-4 reveal">
-                    <span class="block text-4xl font-serif font-bold text-ufhb-dark mb-2">3</span>
-                    <span class="text-xs uppercase tracking-widest text-gray-500 font-bold">Années de projet</span>
-                </div>
-                <div class="p-4 reveal delay-100">
-                    <span class="block text-4xl font-serif font-bold text-ufhb-dark mb-2">4</span>
-                    <span class="text-xs uppercase tracking-widest text-gray-500 font-bold">Pays Partenaires</span>
-                </div>
-                <div class="p-4 reveal delay-200">
-                    <span class="block text-4xl font-serif font-bold text-ufhb-dark mb-2">100+</span>
-                    <span class="text-xs uppercase tracking-widest text-gray-500 font-bold">Bénéficiaires Directs</span>
-                </div>
-                <div class="p-4 reveal delay-300">
-                    <span class="block text-4xl font-serif font-bold text-ufhb-dark mb-2">∞</span>
-                    <span class="text-xs uppercase tracking-widest text-gray-500 font-bold">Impact Durable</span>
-                </div>
-            </div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce-slow">
+            <i class="fas fa-chevron-down text-3xl"></i>
         </div>
     </section>
 
     <section class="py-24 bg-white" id="projet">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
-                <div class="reveal">
-                    <div class="gold-line"></div>
-                    <h2 class="font-serif text-4xl font-bold text-ufhb-dark mb-6">Women in Science<br>and Education</h2>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-6 text-justify">
-                        Le projet <strong>ELEVATE WISE</strong> est une réponse institutionnelle aux défis de la représentation féminine dans les STEM. Cofinancé par l'Union Européenne, il vise à structurer un environnement académique inclusif et performant au sein de l'Université Félix Houphouët-Boigny.
-                    </p>
-                    <p class="text-gray-600 text-lg leading-relaxed text-justify">
-                        Notre ambition est double : renforcer les capacités de gouvernance de notre institution et inspirer la prochaine génération de femmes scientifiques, du lycée jusqu'au doctorat.
-                    </p>
-                </div>
-                <div class="reveal relative">
-                    <div class="absolute -top-4 -left-4 w-24 h-24 border-t-4 border-l-4 border-ufhb-gold"></div>
-                    <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/logo-Elevate%20Wise.jpg" alt="Logo Elevate Wise" class="w-full h-auto object-contain p-8 bg-ufhb-gray rounded-sm shadow-xl">
-                    <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-4 border-r-4 border-ufhb-gold"></div>
-                </div>
+            
+            <div class="text-center mb-20 reveal">
+                <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/logo-Elevate%20Wise.jpg" alt="Logo Elevate Wise" class="h-32 mx-auto mb-8 object-contain hover:scale-105 transition duration-500 drop-shadow-xl">
+                <h2 class="text-5xl font-extrabold text-ufhb-dark mt-4 tracking-tight">ELEVATE WISE</h2>
+                <p class="text-xl text-gray-500 mt-2 font-light">Women in Science and Education</p>
+                <div class="w-24 h-1.5 bg-ufhb-light mx-auto mt-6 rounded-full"></div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="group reveal bg-white p-10 border border-gray-100 hover:border-ufhb-gold transition duration-500 shadow-sm hover:shadow-2xl">
-                    <div class="w-16 h-16 bg-ufhb-dark text-white flex items-center justify-center text-2xl mb-6 group-hover:bg-ufhb-gold transition duration-500">
-                        <i class="fas fa-university"></i>
+            <div class="grid md:grid-cols-3 gap-10 mb-24">
+                <div class="reveal p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-2xl transition duration-500 text-center group cursor-default">
+                    <div class="w-20 h-20 mx-auto bg-ufhb-accent rounded-full flex items-center justify-center text-ufhb-dark text-4xl mb-6 group-hover:scale-110 group-hover:bg-ufhb-dark group-hover:text-white transition duration-500">
+                        <i class="fas fa-bullseye"></i>
                     </div>
-                    <h3 class="font-serif text-xl font-bold text-ufhb-dark mb-4">Gouvernance & Leadership</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Renforcement des capacités institutionnelles pour une gestion universitaire inclusive et promotion du leadership féminin.</p>
+                    <h4 class="text-xl font-bold text-ufhb-dark mb-3">Leadership Féminin</h4>
+                    <p class="text-gray-600 leading-relaxed">Renforcer la place des femmes dans la gouvernance universitaire et la recherche.</p>
                 </div>
-                
-                <div class="group reveal bg-white p-10 border border-gray-100 hover:border-ufhb-gold transition duration-500 shadow-sm hover:shadow-2xl delay-100">
-                    <div class="w-16 h-16 bg-ufhb-dark text-white flex items-center justify-center text-2xl mb-6 group-hover:bg-ufhb-gold transition duration-500">
-                        <i class="fas fa-globe-africa"></i>
+                <div class="reveal p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-2xl transition duration-500 text-center group cursor-default delay-100">
+                    <div class="w-20 h-20 mx-auto bg-ufhb-accent rounded-full flex items-center justify-center text-ufhb-dark text-4xl mb-6 group-hover:scale-110 group-hover:bg-ufhb-dark group-hover:text-white transition duration-500">
+                        <i class="fas fa-network-wired"></i>
                     </div>
-                    <h3 class="font-serif text-xl font-bold text-ufhb-dark mb-4">Coopération Internationale</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Création d'un pont académique durable entre l'Europe et l'Afrique pour le partage de bonnes pratiques scientifiques.</p>
+                    <h4 class="text-xl font-bold text-ufhb-dark mb-3">Réseautage</h4>
+                    <p class="text-gray-600 leading-relaxed">Créer un pont durable entre les scientifiques d'Europe et d'Afrique.</p>
                 </div>
-
-                <div class="group reveal bg-white p-10 border border-gray-100 hover:border-ufhb-gold transition duration-500 shadow-sm hover:shadow-2xl delay-200">
-                    <div class="w-16 h-16 bg-ufhb-dark text-white flex items-center justify-center text-2xl mb-6 group-hover:bg-ufhb-gold transition duration-500">
+                <div class="reveal p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-100 hover:shadow-2xl transition duration-500 text-center group cursor-default delay-200">
+                    <div class="w-20 h-20 mx-auto bg-ufhb-accent rounded-full flex items-center justify-center text-ufhb-dark text-4xl mb-6 group-hover:scale-110 group-hover:bg-ufhb-dark group-hover:text-white transition duration-500">
                         <i class="fas fa-laptop-code"></i>
                     </div>
-                    <h3 class="font-serif text-xl font-bold text-ufhb-dark mb-4">Innovation Digitale</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">Modernisation des outils pédagogiques et intégration de l'intelligence artificielle dans les cursus.</p>
+                    <h4 class="text-xl font-bold text-ufhb-dark mb-3">Digitalisation</h4>
+                    <p class="text-gray-600 leading-relaxed">Intégration massive des outils numériques et de l'IA dans l'enseignement.</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section class="py-24 bg-ufhb-gray">
-        <div class="container mx-auto px-6">
-            <div class="max-w-6xl mx-auto bg-white shadow-2xl overflow-hidden flex flex-col lg:flex-row h-auto lg:h-[550px] reveal">
-                
-                <div class="lg:w-3/5 relative h-96 lg:h-full bg-gray-900 overflow-hidden">
-                    <div id="carousel-container" class="w-full h-full relative">
-                        <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/burgos-groupe.jpg" class="carousel-item active object-cover w-full h-full" alt="Groupe Officiel">
-                        <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/burgos-reunion.jpg" class="carousel-item object-cover w-full h-full" alt="Session de Travail">
-                        <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/burgos-duo.jpg" class="carousel-item object-cover w-full h-full" alt="Délégation">
+            <div class="reveal max-w-6xl mx-auto mb-20">
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row h-[500px] md:h-[450px] relative">
+                    
+                    <div class="md:w-3/5 relative bg-gray-800 h-64 md:h-full overflow-hidden group">
+                        <div id="carousel-container" class="w-full h-full relative">
+                            <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/burgos-groupe.jpg" class="carousel-item active object-cover w-full h-full" alt="Groupe">
+                            <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/burgos-reunion.jpg" class="carousel-item object-cover w-full h-full" alt="Réunion">
+                            <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/burgos-duo.jpg" class="carousel-item object-cover w-full h-full" alt="Duo">
+                        </div>
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        
+                        <div class="absolute top-6 left-6 bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-xl shadow-lg">
+                            <span class="block text-3xl font-extrabold leading-none text-center">15</span>
+                            <span class="text-xs font-bold uppercase tracking-widest">Jan 2025</span>
+                        </div>
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                    <div class="absolute bottom-8 left-8 text-white">
-                        <p class="text-sm font-bold uppercase tracking-widest text-ufhb-gold mb-1">Espagne</p>
-                        <p class="font-serif text-2xl">Université de Burgos</p>
+
+                    <div class="md:w-2/5 p-10 flex flex-col justify-center bg-white relative z-10">
+                        <div class="absolute top-0 right-0 p-4 opacity-10">
+                            <i class="fas fa-quote-right text-8xl text-ufhb-dark"></i>
+                        </div>
+                        
+                        <div class="inline-flex items-center space-x-2 text-ufhb-light text-xs font-extrabold uppercase tracking-widest mb-6">
+                            <span class="w-2 h-2 rounded-full bg-ufhb-light animate-pulse"></span>
+                            <span>Évènement Majeur</span>
+                        </div>
+                        
+                        <h3 class="text-3xl font-bold text-ufhb-dark mb-4 leading-tight">Lancement officiel à <br><span class="text-ufhb-light">Burgos, Espagne</span></h3>
+                        
+                        <p class="text-gray-600 mb-8 leading-relaxed">
+                            Deux jours intenses de planification stratégique. Le consortium a posé les bases solides du projet ELEVATE WISE pour les 3 prochaines années.
+                        </p>
+                        
+                        <div class="border-t border-gray-100 pt-6">
+                            <p class="text-xs text-gray-400 font-bold uppercase mb-3">Partenaires présents :</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-gray-100 rounded-lg text-xs font-bold text-gray-600">🇨🇮 UFHB</span>
+                                <span class="px-3 py-1 bg-gray-100 rounded-lg text-xs font-bold text-gray-600">🇪🇸 Burgos</span>
+                                <span class="px-3 py-1 bg-gray-100 rounded-lg text-xs font-bold text-gray-600">🇵🇹 Leiria</span>
+                                <span class="px-3 py-1 bg-gray-100 rounded-lg text-xs font-bold text-gray-600">🇨🇻 Cap-Vert</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="lg:w-2/5 p-12 flex flex-col justify-center bg-white relative">
-                    <div class="absolute top-0 right-0 w-20 h-20 bg-ufhb-gray flex items-center justify-center text-ufhb-gold text-2xl">
-                        <i class="far fa-calendar-alt"></i>
-                    </div>
-                    
-                    <span class="text-ufhb-dark font-bold uppercase tracking-widest text-xs mb-4">Actualité Phare</span>
-                    <h3 class="font-serif text-3xl font-bold text-ufhb-dark mb-6">Lancement Officiel du Consortium</h3>
-                    
-                    <p class="text-gray-600 mb-8 leading-relaxed text-sm">
-                        Les 15 et 16 Janvier 2025, les délégations partenaires se sont réunies pour définir la feuille de route stratégique. Cet évènement marque le début d'une collaboration de trois ans pour l'excellence éducative.
-                    </p>
-                    
-                    <div class="mt-auto pt-8 border-t border-gray-100">
-                        <p class="text-xs font-bold text-gray-400 uppercase mb-4">Délégations présentes</p>
-                        <div class="flex gap-3">
-                            <span class="w-8 h-5 bg-gray-200 rounded-sm shadow-sm" title="Côte d'Ivoire">🇨🇮</span>
-                            <span class="w-8 h-5 bg-gray-200 rounded-sm shadow-sm" title="Espagne">🇪🇸</span>
-                            <span class="w-8 h-5 bg-gray-200 rounded-sm shadow-sm" title="Portugal">🇵🇹</span>
-                            <span class="w-8 h-5 bg-gray-200 rounded-sm shadow-sm" title="Cap-Vert">🇨🇻</span>
+            <div class="grid md:grid-cols-2 gap-16 reveal">
+                <div class="bg-ufhb-accent/30 p-8 rounded-3xl">
+                    <h3 class="text-2xl font-bold text-ufhb-dark mb-6 flex items-center">
+                        <i class="fas fa-tasks mr-3 text-ufhb-light"></i> Activités Clés
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">
+                            <i class="fas fa-check-circle text-ufhb-light mt-1 mr-3 text-xl"></i>
+                            <span class="text-gray-700 font-medium">Ateliers Leadership & Gestion de projet</span>
+                        </li>
+                        <li class="flex items-start bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">
+                            <i class="fas fa-check-circle text-ufhb-light mt-1 mr-3 text-xl"></i>
+                            <span class="text-gray-700 font-medium">Mobilités académiques vers l'Europe</span>
+                        </li>
+                        <li class="flex items-start bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition">
+                            <i class="fas fa-check-circle text-ufhb-light mt-1 mr-3 text-xl"></i>
+                            <span class="text-gray-700 font-medium">Création de pôles STEM féminins</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-ufhb-dark mb-6 flex items-center">
+                        <i class="fas fa-users mr-3 text-ufhb-light"></i> Bénéficiaires
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="group p-5 border border-gray-200 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300">
+                            <i class="fas fa-user-tie text-3xl mb-2 text-ufhb-light"></i>
+                            <p class="font-bold">Administration</p>
+                        </div>
+                        
+                        <div class="group p-5 border border-gray-200 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300 flex flex-col items-center justify-center">
+                            <i class="fas fa-female text-3xl mb-2 text-ufhb-light"></i>
+                            <p class="font-bold leading-tight">Jeunes Filles</p>
+                            <p class="text-xs mt-1 opacity-80 leading-tight">(Secondaire & Supérieur)</p>
+                        </div>
+                        
+                        <div class="group p-5 border border-gray-200 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300">
+                            <i class="fas fa-chalkboard-teacher text-3xl mb-2 text-ufhb-light"></i>
+                            <p class="font-bold">Enseignants</p>
+                        </div>
+                        
+                        <div class="group p-5 border border-gray-200 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300">
+                            <i class="fas fa-university text-3xl mb-2 text-ufhb-light"></i>
+                            <p class="font-bold">Institution</p>
                         </div>
                     </div>
                 </div>
@@ -284,148 +283,134 @@
         </div>
     </section>
 
-    <section class="py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="font-serif text-3xl font-bold text-ufhb-dark">Les Bénéficiaires du Programme</h2>
-                <div class="w-16 h-1 bg-ufhb-gold mx-auto mt-4"></div>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="reveal group relative bg-white p-8 border-2 border-ufhb-gold rounded-sm shadow-xl transform hover:-translate-y-2 transition duration-300">
-                    <div class="absolute top-0 left-0 bg-ufhb-gold text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider">Prioritaire</div>
-                    <div class="mb-4 text-ufhb-gold text-4xl group-hover:scale-110 transition duration-300"><i class="fas fa-female"></i></div>
-                    <h4 class="font-serif text-lg font-bold text-ufhb-dark mb-2">Jeunes Filles</h4>
-                    <p class="text-xs text-gray-500 font-bold uppercase tracking-wide mb-3">Secondaire & Supérieur</p>
-                    <p class="text-sm text-gray-600 leading-snug">Inspiration, mentorat et bourses pour les carrières scientifiques.</p>
+    <section class="py-24 bg-gray-50" id="partenaires">
+        <div class="container mx-auto px-6 text-center">
+            <span class="text-ufhb-light font-bold tracking-widest uppercase text-sm mb-2 block">Collaboration Internationale</span>
+            <h3 class="text-4xl font-extrabold text-ufhb-dark mb-16">Le Consortium</h3>
+            
+            <div class="flex flex-wrap justify-center gap-12 items-center reveal">
+                <div class="flex flex-col items-center group">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="UE" class="h-20 w-auto mb-4 drop-shadow-md group-hover:scale-110 transition duration-300">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Cofinancé par l'UE</span>
                 </div>
 
-                <div class="reveal group bg-ufhb-gray p-8 border border-transparent hover:border-gray-200 hover:bg-white hover:shadow-lg transition duration-300 delay-100">
-                    <div class="mb-4 text-ufhb-dark text-4xl group-hover:text-ufhb-gold transition duration-300"><i class="fas fa-user-graduate"></i></div>
-                    <h4 class="font-serif text-lg font-bold text-ufhb-dark mb-2">Doctorants</h4>
-                    <p class="text-sm text-gray-600 leading-snug">Accès à des mobilités de recherche en Europe.</p>
+                <div class="opacity-60 hover:opacity-100 hover:scale-110 transition duration-300 grayscale hover:grayscale-0">
+                    <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/University-of-Burgos.png" alt="Burgos" class="h-20 w-auto object-contain">
                 </div>
-
-                <div class="reveal group bg-ufhb-gray p-8 border border-transparent hover:border-gray-200 hover:bg-white hover:shadow-lg transition duration-300 delay-200">
-                    <div class="mb-4 text-ufhb-dark text-4xl group-hover:text-ufhb-gold transition duration-300"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <h4 class="font-serif text-lg font-bold text-ufhb-dark mb-2">Corps Enseignant</h4>
-                    <p class="text-sm text-gray-600 leading-snug">Formation aux nouvelles pédagogies numériques.</p>
+                <div class="opacity-60 hover:opacity-100 hover:scale-110 transition duration-300 grayscale hover:grayscale-0">
+                    <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/LOGOIPL.png" alt="Leiria" class="h-16 w-auto object-contain">
                 </div>
-
-                <div class="reveal group bg-ufhb-gray p-8 border border-transparent hover:border-gray-200 hover:bg-white hover:shadow-lg transition duration-300 delay-300">
-                    <div class="mb-4 text-ufhb-dark text-4xl group-hover:text-ufhb-gold transition duration-300"><i class="fas fa-landmark"></i></div>
-                    <h4 class="font-serif text-lg font-bold text-ufhb-dark mb-2">Institution</h4>
-                    <p class="text-sm text-gray-600 leading-snug">Modernisation de la gouvernance universitaire.</p>
+                <div class="opacity-60 hover:opacity-100 hover:scale-110 transition duration-300 grayscale hover:grayscale-0">
+                    <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/Universit%C3%A9-de-Bouak%C3%A9-alassane-ouattara.png" alt="UAO" class="h-20 w-auto object-contain">
+                </div>
+                <div class="opacity-60 hover:opacity-100 hover:scale-110 transition duration-300 grayscale hover:grayscale-0">
+                    <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/ucv.png" alt="Cap-Vert" class="h-20 w-auto object-contain">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 border-t border-gray-100 bg-white" id="partenaires">
-        <div class="container mx-auto px-6 text-center">
-            <span class="text-gray-400 font-bold tracking-widest uppercase text-xs mb-8 block">Partenaires Officiels</span>
-            
-            <div class="flex flex-wrap justify-center items-center gap-16 reveal">
-                <div class="flex items-center space-x-4 grayscale hover:grayscale-0 transition duration-500 opacity-70 hover:opacity-100">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="UE" class="h-16">
-                    <div class="text-left">
-                        <span class="block text-xs font-bold text-ufhb-dark uppercase">Cofinancé par</span>
-                        <span class="block font-serif text-sm font-bold text-gray-800">L'Union Européenne</span>
+    <footer class="bg-ufhb-dark text-white relative overflow-hidden" id="contact">
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-ufhb-light opacity-10 rounded-full blur-3xl"></div>
+
+        <div class="container mx-auto px-6 py-20 relative z-10">
+            <div class="grid md:grid-cols-2 gap-20">
+                
+                <div class="reveal">
+                    <h2 class="text-4xl font-bold mb-6">Contactez-nous</h2>
+                    <p class="text-gray-300 mb-10 text-lg leading-relaxed">
+                        Vous souhaitez en savoir plus sur ELEVATE WISE ou participer à nos programmes ? Écrivez-nous.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4 shrink-0">
+                                <i class="fas fa-map-marker-alt text-ufhb-light text-xl"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-lg">Adresse</h5>
+                                <p class="text-gray-400">Campus UFHB, Cocody<br>Bâtiment des Vice-Présidences</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4 shrink-0">
+                                <i class="fas fa-envelope text-ufhb-light text-xl"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-lg">Email</h5>
+                                <p class="text-gray-400">bureau.international@ufhb.edu.ci</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3 mt-8 bg-black/20 p-4 rounded-xl inline-flex border border-white/10">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="Drapeau UE" class="h-10 w-auto">
+                            <span class="text-[10px] uppercase font-bold text-gray-300 leading-tight border-l border-white/20 pl-3">Cofinancé par<br>l'Union Européenne</span>
+                        </div>
                     </div>
                 </div>
 
-                <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/University-of-Burgos.png" class="h-16 w-auto grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition duration-500" alt="Burgos">
-                <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/LOGOIPL.png" class="h-14 w-auto grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition duration-500" alt="Leiria">
-                <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/Universit%C3%A9-de-Bouak%C3%A9-alassane-ouattara.png" class="h-16 w-auto grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition duration-500" alt="UAO">
-                <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/ucv.png" class="h-16 w-auto grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition duration-500" alt="Cap-Vert">
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-ufhb-dark text-white pt-20 pb-10 border-t-4 border-ufhb-gold" id="contact">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 mb-16">
-                
-                <div class="md:col-span-1">
-                    <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/logo-ufhb.jpg" alt="Logo" class="h-16 bg-white p-2 mb-6">
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                        L'Université Félix Houphouët-Boigny est le premier établissement d'enseignement supérieur de Côte d'Ivoire. Le projet ELEVATE WISE s'inscrit dans notre plan stratégique de développement.
-                    </p>
-                </div>
-
-                <div>
-                    <h5 class="font-serif font-bold text-lg mb-6 text-ufhb-gold">Navigation</h5>
-                    <ul class="space-y-3 text-sm text-gray-300">
-                        <li><a href="#" class="hover:text-white transition">Présentation du projet</a></li>
-                        <li><a href="#" class="hover:text-white transition">Le Consortium</a></li>
-                        <li><a href="#" class="hover:text-white transition">Ressources Erasmus+</a></li>
-                        <li><a href="#" class="hover:text-white transition">Mentions Légales</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h5 class="font-serif font-bold text-lg mb-6 text-ufhb-gold">Contact</h5>
-                    <ul class="space-y-4 text-sm text-gray-300">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-ufhb-gold"></i>
-                            <span>Campus UFHB, Cocody<br>Bâtiment Vice-Présidence</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope mr-3 text-ufhb-gold"></i>
-                            <a href="mailto:bureau.international@ufhb.edu.ci" class="hover:text-white">bureau.international@ufhb.edu.ci</a>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone mr-3 text-ufhb-gold"></i>
-                            <span>+225 01 42 13 91 91</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h5 class="font-serif font-bold text-lg mb-6 text-ufhb-gold">Restez informés</h5>
-                    <p class="text-xs text-gray-400 mb-4">Recevez les actualités du projet.</p>
-                    <form action="mailto:bureau.international@ufhb.edu.ci" method="post" enctype="text/plain" class="flex flex-col gap-3">
-                        <input type="email" placeholder="Votre email professionnel" class="bg-white/10 border border-white/20 text-white px-4 py-3 text-sm focus:outline-none focus:border-ufhb-gold">
-                        <button class="bg-ufhb-gold text-ufhb-dark font-bold text-sm py-3 px-4 hover:bg-white transition duration-300">S'INSCRIRE</button>
+                <div class="reveal delay-200">
+                    <form action="mailto:bureau.international@ufhb.edu.ci" method="post" enctype="text/plain" class="bg-white p-8 rounded-3xl shadow-2xl text-gray-800">
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Nom</label>
+                                <input type="text" name="nom" class="w-full bg-gray-50 p-3 rounded-lg border border-gray-200 focus:border-ufhb-light focus:ring-2 focus:ring-ufhb-light/20 outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Prénom</label>
+                                <input type="text" name="prenom" class="w-full bg-gray-50 p-3 rounded-lg border border-gray-200 focus:border-ufhb-light focus:ring-2 focus:ring-ufhb-light/20 outline-none transition">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Email</label>
+                            <input type="email" name="email" class="w-full bg-gray-50 p-3 rounded-lg border border-gray-200 focus:border-ufhb-light focus:ring-2 focus:ring-ufhb-light/20 outline-none transition">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-xs uppercase font-bold text-gray-500 mb-2">Message</label>
+                            <textarea rows="4" name="message" class="w-full bg-gray-50 p-3 rounded-lg border border-gray-200 focus:border-ufhb-light focus:ring-2 focus:ring-ufhb-light/20 outline-none transition"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-ufhb-dark hover:bg-ufhb-light text-white font-bold py-4 rounded-xl transition duration-300 transform hover:-translate-y-1 shadow-lg">
+                            Envoyer le message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
                     </form>
                 </div>
             </div>
 
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-                <p>&copy; 2025 Université Félix Houphouët-Boigny. Tous droits réservés.</p>
+            <div class="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+                <p>&copy; 2025 UFHB. Tous droits réservés.</p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="#" class="hover:text-white transition"><i class="fab fa-twitter fa-lg"></i></a>
-                    <a href="#" class="hover:text-white transition"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Menu Mobile
+        // 1. Menu Mobile
         const menuBtn = document.querySelector('button.md\\:hidden');
         const nav = document.querySelector('nav');
+        
         if(menuBtn) {
             menuBtn.addEventListener('click', () => {
                 nav.classList.toggle('hidden');
                 nav.classList.toggle('flex');
                 nav.classList.toggle('flex-col');
                 nav.classList.toggle('absolute');
-                nav.classList.toggle('top-20');
+                nav.classList.toggle('top-16');
                 nav.classList.toggle('left-0');
                 nav.classList.toggle('w-full');
                 nav.classList.toggle('bg-white');
-                nav.classList.toggle('p-8');
+                nav.classList.toggle('p-6');
                 nav.classList.toggle('shadow-2xl');
                 nav.classList.toggle('border-t');
-                nav.classList.toggle('z-50');
             });
         }
 
-        // Diaporama Premium
+        // 2. Diaporama Automatique
         const images = document.querySelectorAll('.carousel-item');
         let currentImgIndex = 0;
+
         function startCarousel() {
             if (images.length === 0) return;
             images[0].classList.add('active');
@@ -433,15 +418,15 @@
                 images[currentImgIndex].classList.remove('active');
                 currentImgIndex = (currentImgIndex + 1) % images.length;
                 images[currentImgIndex].classList.add('active');
-            }, 5000); // Plus lent pour plus de classe
+            }, 4000);
         }
         startCarousel();
 
-        // Reveal Animation
+        // 3. Animation au Scroll (Reveal)
         const revealElements = document.querySelectorAll('.reveal');
         function revealOnScroll() {
             const windowHeight = window.innerHeight;
-            const elementVisible = 100;
+            const elementVisible = 150;
             revealElements.forEach((reveal) => {
                 const elementTop = reveal.getBoundingClientRect().top;
                 if (elementTop < windowHeight - elementVisible) {
