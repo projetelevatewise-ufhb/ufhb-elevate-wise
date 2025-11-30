@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UFHB - Projet Erasmus+ ELEVATE WISE</title>
+    
+    <title>ELEVATE WISE - L'Excellence au Féminin | UFHB & Erasmus+</title>
+    <meta name="description" content="Site officiel du projet Erasmus+ ELEVATE WISE à l'Université Félix Houphouët-Boigny. Promotion du leadership féminin et des jeunes filles dans les sciences (STEM) en Côte d'Ivoire.">
+    <meta name="keywords" content="ELEVATE WISE, Erasmus+, UFHB, Côte d'Ivoire, Abidjan, Femmes Sciences, STEM, Bourses, Université Burgos, Autonomisation">
+    <meta name="author" content="Consortium ELEVATE WISE">
+    <meta property="og:image" content="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/banniere-ufhb.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -18,9 +23,9 @@
                     },
                     colors: {
                         ufhb: {
-                            dark: '#0A3D2E',
-                            light: '#4CAF50',
-                            accent: '#E8F5E9',
+                            dark: '#0A3D2E',  /* Vert Institutionnel */
+                            light: '#4CAF50', /* Vert Vif */
+                            accent: '#E8F5E9', /* Fond clair */
                         }
                     },
                     animation: {
@@ -186,16 +191,13 @@
 
             <div class="reveal max-w-6xl mx-auto mb-20">
                 <div class="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row h-[500px] md:h-[450px] relative">
-                    
                     <div class="md:w-3/5 relative bg-gray-800 h-64 md:h-full overflow-hidden group">
                         <div id="carousel-container" class="w-full h-full relative">
                             <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/burgos-groupe.jpg" class="carousel-item active object-cover w-full h-full" alt="Groupe">
                             <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/burgos-reunion.jpg" class="carousel-item object-cover w-full h-full" alt="Réunion">
                             <img src="https://raw.githubusercontent.com/projetelevatewise-ufhb/ufhb-elevate-wise/main/burgos-duo.jpg" class="carousel-item object-cover w-full h-full" alt="Duo">
                         </div>
-                        
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                        
                         <div class="absolute top-6 left-6 bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-xl shadow-lg">
                             <span class="block text-3xl font-extrabold leading-none text-center">15</span>
                             <span class="text-xs font-bold uppercase tracking-widest">Jan 2025</span>
@@ -206,18 +208,14 @@
                         <div class="absolute top-0 right-0 p-4 opacity-10">
                             <i class="fas fa-quote-right text-8xl text-ufhb-dark"></i>
                         </div>
-                        
                         <div class="inline-flex items-center space-x-2 text-ufhb-light text-xs font-extrabold uppercase tracking-widest mb-6">
                             <span class="w-2 h-2 rounded-full bg-ufhb-light animate-pulse"></span>
                             <span>Évènement Majeur</span>
                         </div>
-                        
                         <h3 class="text-3xl font-bold text-ufhb-dark mb-4 leading-tight">Lancement officiel à <br><span class="text-ufhb-light">Burgos, Espagne</span></h3>
-                        
                         <p class="text-gray-600 mb-8 leading-relaxed">
                             Deux jours intenses de planification stratégique. Le consortium a posé les bases solides du projet ELEVATE WISE pour les 3 prochaines années.
                         </p>
-                        
                         <div class="border-t border-gray-100 pt-6">
                             <p class="text-xs text-gray-400 font-bold uppercase mb-3">Partenaires présents :</p>
                             <div class="flex flex-wrap gap-2">
@@ -387,30 +385,29 @@
     </footer>
 
     <script>
-        // 1. Menu Mobile
+        // Menu Mobile
         const menuBtn = document.querySelector('button.md\\:hidden');
         const nav = document.querySelector('nav');
-        
         if(menuBtn) {
             menuBtn.addEventListener('click', () => {
                 nav.classList.toggle('hidden');
                 nav.classList.toggle('flex');
                 nav.classList.toggle('flex-col');
                 nav.classList.toggle('absolute');
-                nav.classList.toggle('top-16');
+                nav.classList.toggle('top-20');
                 nav.classList.toggle('left-0');
                 nav.classList.toggle('w-full');
                 nav.classList.toggle('bg-white');
-                nav.classList.toggle('p-6');
+                nav.classList.toggle('p-8');
                 nav.classList.toggle('shadow-2xl');
                 nav.classList.toggle('border-t');
+                nav.classList.toggle('z-50');
             });
         }
 
-        // 2. Diaporama Automatique
+        // Diaporama
         const images = document.querySelectorAll('.carousel-item');
         let currentImgIndex = 0;
-
         function startCarousel() {
             if (images.length === 0) return;
             images[0].classList.add('active');
@@ -418,15 +415,15 @@
                 images[currentImgIndex].classList.remove('active');
                 currentImgIndex = (currentImgIndex + 1) % images.length;
                 images[currentImgIndex].classList.add('active');
-            }, 4000);
+            }, 5000);
         }
         startCarousel();
 
-        // 3. Animation au Scroll (Reveal)
+        // Reveal Animation
         const revealElements = document.querySelectorAll('.reveal');
         function revealOnScroll() {
             const windowHeight = window.innerHeight;
-            const elementVisible = 150;
+            const elementVisible = 100;
             revealElements.forEach((reveal) => {
                 const elementTop = reveal.getBoundingClientRect().top;
                 if (elementTop < windowHeight - elementVisible) {
