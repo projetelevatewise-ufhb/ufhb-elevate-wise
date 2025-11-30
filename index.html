@@ -18,9 +18,9 @@
                     },
                     colors: {
                         ufhb: {
-                            dark: '#0A3D2E',  /* Vert Institutionnel */
-                            light: '#4CAF50', /* Vert Vif (Boutons/Accents) */
-                            accent: '#E8F5E9', /* Fond très clair */
+                            dark: '#0A3D2E',
+                            light: '#4CAF50',
+                            accent: '#E8F5E9',
                         }
                     },
                     animation: {
@@ -38,28 +38,23 @@
         }
     </script>
     <style>
-        /* Effet de verre (Glassmorphism) pour le menu */
         .glass-nav {
             background: rgba(255, 255, 255, 0.90);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        
-        /* Styles du Diaporama */
         .carousel-item {
             position: absolute;
             inset: 0;
             opacity: 0;
             transition: opacity 1.5s ease-in-out, transform 10s ease;
-            transform: scale(1); /* Zoom initial */
+            transform: scale(1);
         }
         .carousel-item.active {
             opacity: 1;
-            transform: scale(1.05); /* Effet de zoom lent (Ken Burns) */
+            transform: scale(1.05);
             z-index: 10;
         }
-
-        /* Animation d'apparition au scroll (Reveal) */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -69,8 +64,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-        
-        /* Soulignement animé du menu */
         .nav-link {
             position: relative;
         }
@@ -268,14 +261,18 @@
                             <i class="fas fa-user-tie text-3xl mb-2 text-ufhb-light"></i>
                             <p class="font-bold">Administration</p>
                         </div>
-                        <div class="group p-5 border border-gray-200 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300">
-                            <i class="fas fa-user-graduate text-3xl mb-2 text-ufhb-light"></i>
-                            <p class="font-bold">Doctorants</p>
+                        
+                        <div class="group p-5 border border-gray-200 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300 flex flex-col items-center justify-center">
+                            <i class="fas fa-female text-3xl mb-2 text-ufhb-light"></i>
+                            <p class="font-bold leading-tight">Jeunes Filles</p>
+                            <p class="text-xs mt-1 opacity-80 leading-tight">(Secondaire & Supérieur)</p>
                         </div>
+                        
                         <div class="group p-5 border border-gray-200 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300">
                             <i class="fas fa-chalkboard-teacher text-3xl mb-2 text-ufhb-light"></i>
                             <p class="font-bold">Enseignants</p>
                         </div>
+                        
                         <div class="group p-5 border border-gray-200 rounded-2xl text-center hover:bg-ufhb-dark hover:text-white transition duration-300">
                             <i class="fas fa-university text-3xl mb-2 text-ufhb-light"></i>
                             <p class="font-bold">Institution</p>
@@ -416,18 +413,10 @@
 
         function startCarousel() {
             if (images.length === 0) return;
-            
-            // Initialisation
             images[0].classList.add('active');
-
             setInterval(() => {
-                // Enlever active de l'image courante
                 images[currentImgIndex].classList.remove('active');
-                
-                // Calcul index suivant
                 currentImgIndex = (currentImgIndex + 1) % images.length;
-                
-                // Ajouter active à la suivante
                 images[currentImgIndex].classList.add('active');
             }, 4000);
         }
@@ -435,11 +424,9 @@
 
         // 3. Animation au Scroll (Reveal)
         const revealElements = document.querySelectorAll('.reveal');
-
         function revealOnScroll() {
             const windowHeight = window.innerHeight;
             const elementVisible = 150;
-
             revealElements.forEach((reveal) => {
                 const elementTop = reveal.getBoundingClientRect().top;
                 if (elementTop < windowHeight - elementVisible) {
@@ -448,7 +435,6 @@
             });
         }
         window.addEventListener('scroll', revealOnScroll);
-        // Déclencher une fois au chargement pour les éléments déjà visibles
         revealOnScroll();
     </script>
 </body>
