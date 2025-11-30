@@ -15,8 +15,8 @@
                 extend: {
                     colors: {
                         ufhb: {
-                            dark: '#0A3D2E',  /* Vert Foncé UFHB */
-                            light: '#4CAF50', /* Vert Clair Accent */
+                            dark: '#0A3D2E',
+                            light: '#4CAF50',
                             gray: '#F3F4F6'
                         }
                     },
@@ -36,14 +36,19 @@
         html {
             scroll-behavior: smooth;
         }
-        /* Transition douce pour le diaporama */
-        .fade-enter {
+        /* Styles pour le diaporama */
+        .carousel-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 1s ease-in-out;
             opacity: 0;
-            z-index: 0;
         }
-        .fade-active {
+        .carousel-img.active {
             opacity: 1;
-            z-index: 10;
         }
     </style>
 </head>
@@ -73,7 +78,6 @@
 
     <section class="relative h-[600px] flex items-center justify-center hero-bg">
         <div class="absolute inset-0 bg-[#0A3D2E] bg-opacity-80"></div>
-        
         <div class="relative z-10 text-center text-white px-4 max-w-4xl">
             <span class="uppercase tracking-widest text-ufhb-light font-semibold mb-2 block">Coopération Internationale</span>
             <h1 class="text-4xl md:text-6xl font-bold mb-6">ERASMUS+ <br> <span class="font-light">Projet ELEVATE WISE</span></h1>
@@ -121,11 +125,11 @@
                 <div class="flex flex-col md:flex-row h-[450px] md:h-[400px]">
                     
                     <div class="md:w-1/2 h-64 md:h-full relative bg-gray-200 overflow-hidden" id="carousel-container">
-                        <img src="https://github.com/projetelevatewise-ufhb/ufhb-elevate-wise/blob/main/burgos-groupe.jpg?raw=true" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100" data-index="0" alt="Photo de groupe Burgos">
+                        <img src="https://github.com/projetelevatewise-ufhb/ufhb-elevate-wise/blob/main/burgos-groupe.jpg?raw=true" class="carousel-img active" alt="Photo de groupe Burgos">
                         
-                        <img src="https://github.com/projetelevatewise-ufhb/ufhb-elevate-wise/blob/main/burgos-reunion.jpg?raw=true" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0" data-index="1" alt="Réunion de travail">
+                        <img src="https://github.com/projetelevatewise-ufhb/ufhb-elevate-wise/blob/main/burgos-reunion.jpg?raw=true" class="carousel-img" alt="Réunion de travail">
                         
-                        <img src="https://github.com/projetelevatewise-ufhb/ufhb-elevate-wise/blob/main/burgos-duo.jpg?raw=true" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0" data-index="2" alt="Délégation UFHB">
+                        <img src="https://github.com/projetelevatewise-ufhb/ufhb-elevate-wise/blob/main/burgos-duo.jpg?raw=true" class="carousel-img" alt="Délégation UFHB">
                         
                         <div class="absolute top-4 left-4 bg-white/95 backdrop-blur text-ufhb-dark px-4 py-2 rounded-lg shadow-lg text-center border-l-4 border-ufhb-light z-20">
                             <span class="block text-2xl font-bold leading-none">15-16</span>
@@ -179,7 +183,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <div>
                     <h3 class="text-2xl font-bold text-ufhb-dark mb-6">Bénéficiaires</h3>
                     <div class="grid grid-cols-2 gap-4">
@@ -208,34 +211,27 @@
     <section class="py-16 bg-gray-100" id="partenaires">
         <div class="container mx-auto px-6 text-center">
             <h3 class="text-xl font-bold text-gray-500 uppercase tracking-widest mb-10">Partenaires du Consortium</h3>
-            
             <div class="flex flex-wrap justify-center gap-8 items-center mt-8">
-                
                 <div class="flex flex-col items-center mx-4 mb-4">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="Drapeau UE" class="h-16 w-auto object-contain mb-2 shadow-sm">
                     <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Cofinancé par l'UE</span>
                 </div>
-
                 <div class="group relative">
                     <img src="https://github.com/projetelevatewise-ufhb/ufhb-elevate-wise/blob/main/University-of-Burgos.png?raw=true" alt="Université de Burgos" class="h-16 w-auto object-contain grayscale hover:grayscale-0 transition duration-300 opacity-80 hover:opacity-100">
                     <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs bg-gray-800 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Espagne</div>
                 </div>
-
                 <div class="group relative">
                     <img src="https://github.com/projetelevatewise-ufhb/ufhb-elevate-wise/blob/main/LOGOIPL.png?raw=true" alt="Politécnico de Leiria" class="h-16 w-auto object-contain grayscale hover:grayscale-0 transition duration-300 opacity-80 hover:opacity-100">
                     <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs bg-gray-800 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Portugal</div>
                 </div>
-
                 <div class="group relative">
                     <img src="https://github.com/projetelevatewise-ufhb/ufhb-elevate-wise/blob/main/Universit%C3%A9-de-Bouak%C3%A9-alassane-ouattara.png?raw=true" alt="Université Alassane Ouattara" class="h-16 w-auto object-contain grayscale hover:grayscale-0 transition duration-300 opacity-80 hover:opacity-100">
                     <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs bg-gray-800 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Côte d'Ivoire</div>
                 </div>
-
                 <div class="group relative">
                     <img src="https://github.com/projetelevatewise-ufhb/ufhb-elevate-wise/blob/main/ucv.png?raw=true" alt="Universidade de Cabo Verde" class="h-16 w-auto object-contain grayscale hover:grayscale-0 transition duration-300 opacity-80 hover:opacity-100">
                     <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs bg-gray-800 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">Cap-Vert</div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -248,7 +244,6 @@
                     <p class="text-gray-300 mb-8">
                         Le Bureau des relations internationales de l'UFHB est à votre écoute pour toute question concernant le projet ELEVATE WISE ou les opportunités de mobilité.
                     </p>
-                    
                     <div class="space-y-4">
                         <div class="flex items-center">
                             <i class="fas fa-map-marker-alt text-ufhb-light w-8"></i>
@@ -264,7 +259,6 @@
                         </div>
                     </div>
                 </div>
-
                 <form action="mailto:bureau.international@ufhb.edu.ci" method="post" enctype="text/plain" class="bg-white bg-opacity-10 p-8 rounded border border-gray-600">
                     <div class="grid grid-cols-2 gap-4 mb-4">
                         <div>
@@ -316,7 +310,6 @@
                     <p class="mb-4 text-xs leading-relaxed">
                         Ce projet a été financé avec le soutien de la Commission européenne. Cette publication n'engage que son auteur et la Commission n'est pas responsable de l'usage qui pourrait être fait des informations qui y sont contenues.
                     </p>
-                    
                     <div class="flex items-center space-x-3 mt-4 bg-gray-800 p-3 rounded-lg inline-flex">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="Drapeau UE" class="h-10 w-auto">
                         <span class="text-[10px] uppercase font-bold text-gray-300 leading-tight">Cofinancé par<br>l'Union Européenne</span>
@@ -336,7 +329,7 @@
     </footer>
 
     <script>
-        // 1. Menu Mobile
+        // Menu Mobile
         const menuBtn = document.querySelector('button.md\\:hidden');
         const nav = document.querySelector('nav');
         
@@ -353,22 +346,20 @@
             nav.classList.toggle('shadow-lg');
         });
 
-        // 2. Diaporama automatique (Burgos)
-        const carouselImages = document.querySelectorAll('#carousel-container img');
-        let currentIndex = 0;
+        // Diaporama Automatique
+        const images = document.querySelectorAll('.carousel-img');
+        let currentImgIndex = 0;
 
-        if(carouselImages.length > 0) {
+        if (images.length > 0) {
             setInterval(() => {
-                // Masquer l'image actuelle
-                carouselImages[currentIndex].classList.remove('opacity-100');
-                carouselImages[currentIndex].classList.add('opacity-0');
+                // Enlever la classe active de l'image actuelle
+                images[currentImgIndex].classList.remove('active');
                 
-                // Passer à la suivante (en boucle)
-                currentIndex = (currentIndex + 1) % carouselImages.length;
+                // Calculer l'index suivant
+                currentImgIndex = (currentImgIndex + 1) % images.length;
                 
-                // Afficher la nouvelle image
-                carouselImages[currentIndex].classList.remove('opacity-0');
-                carouselImages[currentIndex].classList.add('opacity-100');
+                // Ajouter la classe active à la nouvelle image
+                images[currentImgIndex].classList.add('active');
             }, 4000); // Change toutes les 4 secondes
         }
     </script>
